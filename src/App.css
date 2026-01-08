@@ -1,0 +1,176 @@
+#root {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scores {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.scores > div {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.scores > div.current {
+  border-color: #007bff;
+  background-color: #e7f3ff;
+}
+
+.turn {
+  margin-bottom: 1rem;
+}
+
+.dice {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.die {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.2s;
+}
+
+.die:hover {
+  background-color: #f0f0f0;
+}
+
+.die.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.die.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.set-aside {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.aside-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.aside-dice {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.aside-die {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #333;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #e0e0e0;
+}
+
+.legend {
+  margin-top: 2rem;
+  text-align: left;
+  max-width: 400px;
+}
+
+.legend h3 {
+  margin-bottom: 0.5rem;
+}
+
+.legend ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.die.blank {
+  border-style: dashed;
+  background-color: #f0f0f0;
+}
+
+.rules-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.rules-form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rules-form input {
+  width: 60px;
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
