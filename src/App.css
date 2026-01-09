@@ -355,7 +355,9 @@ button:disabled {
 }
 
 .mobile-rules {
-  display: none; /* Hide mobile layout on desktop */
+  display: none; /* Hidden on desktop */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
 }
 
 /* Mobile responsiveness */
@@ -397,7 +399,7 @@ button:disabled {
   }
 
   .mobile-rules {
-    display: block; /* Show mobile single column layout */
+    display: grid; /* Show mobile 2 column layout */
     margin-bottom: 1.5rem;
   }
 

@@ -1,21 +1,36 @@
-import React, { useState } from 'react'
-
-const ruleOrder = ['single1', 'single5', 'three1', 'three2', 'three3', 'three4', 'three5', 'three6', 'fourOfAKind', 'fiveOfAKind', 'sixOfAKind', 'straight', 'threePairs', 'fourOfAKindAndPair', 'twoTriplets']
+import React, { useState, useEffect } from 'react'
 
 const Game = ({ farkle }) => {
   const [legendVisible, setLegendVisible] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const ruleOrder = ['single1', 'single5', 'three1', 'three2', 'three3', 'three4', 'three5', 'three6', 'fourOfAKind', 'fiveOfAKind', 'sixOfAKind', 'straight', 'threePairs', 'fourOfAKindAndPair', 'twoTriplets']
   const enabledRules = ruleOrder.filter(key => farkle.rules[key] > 0)
-  const allEnabled = enabledRules.length === 15
-  const rows = allEnabled ? 5 : 3
-  const cols = 3
-  const rules = allEnabled ? ruleOrder.map(key => ({ key, name: farkle.ruleNames[key], value: farkle.rules[key] })) : enabledRules.map(key => ({ key, name: farkle.ruleNames[key], value: farkle.rules[key] }))
+  const rules = enabledRules.map(key => ({ key, name: farkle.ruleNames[key], value: farkle.rules[key] }))
+  const cols = isMobile ? 2 : 3
+  const rows = Math.ceil(rules.length / cols)
   const grid = Array.from({ length: rows }, () => Array(cols).fill(null))
-  for (let i = 0; i < rules.length; i++) {
-    const col = Math.floor(i / rows)
-    const row = i % rows
-    grid[row][col] = rules[i]
+  if (isMobile) {
+    // fill row-wise
+    for (let i = 0; i < rules.length; i++) {
+      const row = Math.floor(i / cols)
+      const col = i % cols
+      grid[row][col] = rules[i]
+    }
+  } else {
+    // fill column-wise
+    for (let i = 0; i < rules.length; i++) {
+      const col = Math.floor(i / rows)
+      const row = i % rows
+      grid[row][col] = rules[i]
+    }
   }
   if (farkle.gameOver) {
     return (
@@ -87,7 +102,7 @@ const Game = ({ farkle }) => {
             <button onClick={() => setLegendVisible(false)}>×</button>
           </div>
           <div className="legend-grid">
-            {grid.flat().filter(rule => rule !== null).map((rule, i) => (
+            {(isMobile ? grid.flat().filter(rule => rule !== null) : grid.flat()).map((rule, i) => (
               <div key={i} className="legend-item">{rule ? <><strong>{rule.name}</strong>: {rule.value}</> : ''}</div>
             ))}
           </div>
