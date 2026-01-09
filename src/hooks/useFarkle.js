@@ -11,6 +11,7 @@ const useFarkle = () => {
   const [hasBanked, setHasBanked] = useState([false, false])
 
   const [dice, setDice] = useState([null, null, null, null, null, null])
+  const [isRolling, setIsRolling] = useState(false)
   const [selectedDice, setSelectedDice] = useState(new Set())
   const [setAsideDice, setSetAsideDice] = useState([])
   const [disabledDice, setDisabledDice] = useState(new Set())
@@ -51,12 +52,12 @@ const useFarkle = () => {
     three4: 'Three 4s',
     three5: 'Three 5s',
     three6: 'Three 6s',
-    fourOfAKind: 'Four of a kind',
-    fiveOfAKind: 'Five of a kind',
-    sixOfAKind: 'Six of a kind',
+    fourOfAKind: 'Four-of-a-kind',
+    fiveOfAKind: 'Five-of-a-kind',
+    sixOfAKind: 'Six-of-a-kind',
     straight: 'Straight (1-6)',
     threePairs: 'Three pairs',
-    fourOfAKindAndPair: 'Four of a kind and a pair',
+    fourOfAKindAndPair: 'Four-of-a-kind & pair',
     twoTriplets: 'Two triplets'
   }
 
@@ -213,18 +214,27 @@ const useFarkle = () => {
   // Roll dice
   const rollDice = () => {
     if (!canRoll) return
+    setIsRolling(true)
     const newDice = [...dice]
     const toRoll = []
     for (let i = 0; i < 6; i++) {
       if (!disabledDice.has(i)) toRoll.push(i)
     }
-    if (toRoll.length === 0) return
-    for (let i of toRoll) {
-      newDice[i] = Math.floor(Math.random() * 6) + 1
+    if (toRoll.length === 0) {
+      setIsRolling(false)
+      return
     }
-    setDice(newDice)
-    setSelectedDice(new Set())
-    setCanRoll(false)
+
+    // Start animation
+    setTimeout(() => {
+      for (let i of toRoll) {
+        newDice[i] = Math.floor(Math.random() * 6) + 1
+      }
+      setDice(newDice)
+      setSelectedDice(new Set())
+      setCanRoll(false)
+      setIsRolling(false)
+    }, 800) // Match animation duration
   }
 
   // Select/deselect die
@@ -384,6 +394,7 @@ const useFarkle = () => {
     winningScore,
     minBankScore,
     ruleNames,
+    isRolling,
     calculateScore,
     hasScoring,
     rollDice,
