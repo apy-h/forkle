@@ -2,6 +2,9 @@ import React from 'react'
 
 const Setup = ({ farkle }) => {
   const allZero = Object.values(farkle.rules).every(v => v === 0)
+  const goalTooLow = Object.values(farkle.rules).some(v => v > farkle.winningScore)
+  const minBankTooHigh = farkle.minBankScore > farkle.winningScore
+  const disabled = allZero || goalTooLow || minBankTooHigh
 
   const ruleOrder = ['single1', 'single5', 'three1', 'three2', 'three3', 'three4', 'three5', 'three6', 'fourOfAKind', 'fiveOfAKind', 'sixOfAKind', 'straight', 'threePairs', 'fourOfAKindAndPair', 'twoTriplets']
 
@@ -59,8 +62,10 @@ const Setup = ({ farkle }) => {
       </div>
 
       {allZero && <p>At least one scoring rule must be greater than 0.</p>}
+      {goalTooLow && <p>The goal must be at least as high as the highest scoring rule.</p>}
+      {minBankTooHigh && <p>The minimum bank score cannot be higher than the goal.</p>}
       <div className="setup-buttons">
-        <button onClick={() => farkle.setGameStarted(true)} disabled={allZero}>Start Game</button>
+        <button onClick={() => farkle.setGameStarted(true)} disabled={disabled}>Start Game</button>
         <button onClick={farkle.resetToDefaults}>Reset Rules</button>
       </div>
     </div>
