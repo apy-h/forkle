@@ -21,6 +21,28 @@
   --shadow-hover: rgba(0,0,0,0.2);
 }
 
+[data-theme="dark"] {
+  --primary-blue: #4a90e2;
+  --primary-blue-hover: #357abd;
+  --primary-blue-light: #2c5aa0;
+  --secondary-bg: #2a2a2a;
+  --text-primary: #e0e0e0;
+  --border-light: #555555;
+  --card-bg: #3a3a3a;
+  --text-muted: #cccccc;
+  --disabled-bg: #666666;
+  --shadow-color: rgba(0,0,0,0.3);
+  --shadow-hover: rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] .die {
+  background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .rules-table {
+  background-color: var(--secondary-bg);
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -32,8 +54,30 @@
   max-width: 900px;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: var(--card-bg);
+}
+
 h1 {
-  margin: 0 0 0.75rem 0;
+  margin: 0;
   color: var(--text-primary);
   font-size: 2rem;
   font-weight: 500;
