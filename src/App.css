@@ -33,7 +33,7 @@
 }
 
 h1 {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
   color: var(--text-primary);
   font-size: 2rem;
   font-weight: 500;
@@ -42,8 +42,8 @@ h1 {
 /* Rename .scores class to gameplay-header */
 .scores {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -64,19 +64,18 @@ h1 {
 }
 
 .turn {
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
   color: var(--text-muted);
 }
 
 .turn p {
-  margin: 0.25rem 0;
+  margin: 0.15rem 0;
 }
 
 .dice {
   display: flex;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -105,7 +104,8 @@ h1 {
   left: 50%;
   width: 0;
   height: 0;
-  background-color: rgba(0,0,255,0.1);
+  background-color: var(--primary-blue-hover);
+  opacity: 0.1;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.3s, height 0.3s;
@@ -137,12 +137,12 @@ h1 {
   gap: 0.5rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 button {
-  padding: 0.4rem 0.8rem;
-  font-size: 12px;
+  padding: 0.25rem 0.25rem;
+  font-size: 10px;
   cursor: pointer;
   border: none;
   border-radius: 6px;
@@ -150,7 +150,7 @@ button {
   color: white;
   transition: all 0.2s ease;
   font-weight: 500;
-  min-width: 100px;
+  min-width: 60px;
   box-sizing: border-box;
 }
 
@@ -182,12 +182,12 @@ button:disabled {
 }
 
 .set-aside {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.15rem;
   align-items: center;
-  max-height: 120px;
+  max-height: 100px;
   overflow-y: auto;
 }
 
@@ -221,11 +221,11 @@ button:disabled {
 }
 
 .legend {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   text-align: left;
   max-width: 100%;
   background-color: var(--card-bg);
-  padding: 1rem;
+  padding: 0.25rem;
   border-radius: 8px;
   border: 1px solid var(--border-light);
 }
@@ -257,25 +257,23 @@ button:disabled {
 .legend-header button:hover {
   background: none;
   color: var(--text-primary);
-}
-
-.show-rules-btn {
-  margin-top: 1rem;
+  transform: none;
+  box-shadow: none;
 }
 
 .legend-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: 0.15rem;
   margin: 0;
   padding: 0;
 }
 
 .legend-item {
-  font-size: 12px;
+  font-size: 10px;
   color: var(--text-primary);
   background-color: var(--card-bg);
-  padding: 0.5rem;
+  padding: 0.25rem;
   border-radius: 4px;
   text-align: center;
 }
@@ -283,17 +281,17 @@ button:disabled {
 .rules-form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
   max-width: 800px;
 }
 
 .rules-table {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   border: 1px solid var(--border-light);
   border-radius: 8px;
   overflow: hidden;
-  background-color: white;
+  background-color: var(--card-bg);
 }
 
 .top-table {
@@ -319,7 +317,7 @@ button:disabled {
   justify-content: space-between;
   align-items: center;
   background-color: var(--card-bg);
-  padding: 0.75rem;
+  padding: 0.5rem;
   border-bottom: 1px solid var(--border-light);
   border-right: 1px solid var(--border-light);
   font-size: 12px;
@@ -338,7 +336,7 @@ button:disabled {
   border: 1px solid silver;
   border-radius: 4px;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .rules-row label:last-child {
@@ -363,16 +361,16 @@ button:disabled {
   border: 1px solid silver;
   border-radius: 4px;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 0.5rem;
 }
 
 .setup-buttons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
 }
 
 .mobile-rules {
@@ -409,19 +407,13 @@ button:disabled {
     gap: 0.25rem;
   }
 
-  button {
-    padding: 0.4rem 0.75rem;
-    font-size: 13px;
-    min-width: 70px;
-  }
-
   .rules-table {
     display: none; /* Hide table layout on mobile */
   }
 
   .mobile-rules {
     display: grid; /* Show mobile 2 column layout */
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .mobile-rules label {
@@ -429,7 +421,7 @@ button:disabled {
     justify-content: space-between;
     align-items: center;
     background-color: var(--card-bg);
-    padding: 0.75rem;
+    padding: 0.5rem;
     border-radius: 6px;
     border: 1px solid var(--border-light);
     font-size: 12px;
@@ -444,7 +436,7 @@ button:disabled {
 
   .setup-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.25rem;
     justify-content: center;
     flex-wrap: wrap;
   }
