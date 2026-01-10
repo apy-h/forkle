@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react'
 
+const FLASH_INTERVAL_MS = 300
+const ROLL_DURATION_MS = 900
+
+// Set CSS custom property for animation duration
+document.documentElement.style.setProperty('--flash-duration', `${FLASH_INTERVAL_MS / 1000}s`)
+
 const useFarkle = () => {
   const [players, setPlayers] = useState([
     { name: 'Player 1', score: 0 },
@@ -215,7 +221,6 @@ const useFarkle = () => {
   const rollDice = () => {
     if (!canRoll) return
     setIsRolling(true)
-    const newDice = [...dice]
     const toRoll = []
     for (let i = 0; i < 6; i++) {
       if (!disabledDice.has(i)) toRoll.push(i)
@@ -225,8 +230,19 @@ const useFarkle = () => {
       return
     }
 
-    // Start animation
+    // Start flashing animation
+    const interval = setInterval(() => {
+      const tempDice = [...dice]
+      for (let i of toRoll) {
+        tempDice[i] = Math.floor(Math.random() * 6) + 1
+      }
+      setDice(tempDice)
+    }, FLASH_INTERVAL_MS)
+
+    // Stop animation and set final values
     setTimeout(() => {
+      clearInterval(interval)
+      const newDice = [...dice]
       for (let i of toRoll) {
         newDice[i] = Math.floor(Math.random() * 6) + 1
       }
@@ -234,7 +250,7 @@ const useFarkle = () => {
       setSelectedDice(new Set())
       setCanRoll(false)
       setIsRolling(false)
-    }, 800) // Match animation duration
+    }, ROLL_DURATION_MS) // Match animation duration
   }
 
   // Select/deselect die
