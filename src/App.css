@@ -7,51 +7,66 @@
   overflow: visible;
 }
 
+:root {
+  --primary-blue: skyblue;
+  --primary-blue-hover: cornflowerblue;
+  --primary-blue-light: lightcyan;
+  --secondary-bg: whitesmoke;
+  --text-primary: darkslategray;
+  --border-light: gainsboro;
+  --card-bg: ghostwhite;
+  --text-muted: dimgray;
+  --disabled-bg: lightgray;
+  --shadow-color: rgba(0,0,0,0.1);
+  --shadow-hover: rgba(0,0,0,0.2);
+}
+
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: var(--secondary-bg);
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px var(--shadow-color);
   padding: 1.5rem;
   max-width: 900px;
 }
 
 h1 {
   margin: 0 0 1rem 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 2rem;
-  font-weight: 300;
+  font-weight: 500;
 }
 
+/* Rename .scores class to gameplay-header */
 .scores {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .scores > div {
-  padding: 0.5rem 1rem;
-  border: 2px solid #e9ecef;
+  padding: 0.5rem 0.5rem;
+  border: 2px solid var(--border-light);
   border-radius: 8px;
-  background-color: #f8f9fa;
-  font-weight: 500;
+  background-color: var(--card-bg);
+  font-weight: 400;
   min-width: 120px;
 }
 
 .scores > div.current {
-  border-color: #007bff;
-  background-color: #e3f2fd;
-  color: #007bff;
+  border-color: var(--primary-blue);
+  background-color: var(--primary-blue-light);
+  color: var(--primary-blue);
 }
 
 .turn {
   margin-bottom: 1rem;
   font-size: 1.1rem;
-  color: #495057;
+  color: var(--text-muted);
 }
 
 .turn p {
@@ -69,7 +84,7 @@ h1 {
 .die {
   width: 45px;
   height: 45px;
-  border: 2px solid #6c757d;
+  border: 2px solid var(--text-muted);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -90,7 +105,7 @@ h1 {
   left: 50%;
   width: 0;
   height: 0;
-  background-color: rgba(0,123,255,0.1);
+  background-color: rgba(0,0,255,0.1);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.3s, height 0.3s;
@@ -102,9 +117,9 @@ h1 {
 }
 
 .die.selected {
-  background-color: #007bff;
+  background-color: var(--primary-blue);
   color: white;
-  border-color: #0056b3;
+  border-color: var(--primary-blue-hover);
   transform: scale(1.05);
 }
 
@@ -126,26 +141,27 @@ h1 {
 }
 
 button {
-  padding: 0.5rem 1rem;
-  font-size: 14px;
+  padding: 0.4rem 0.8rem;
+  font-size: 12px;
   cursor: pointer;
   border: none;
   border-radius: 6px;
-  background-color: #007bff;
+  background-color: var(--primary-blue);
   color: white;
   transition: all 0.2s ease;
   font-weight: 500;
-  min-width: 80px;
+  min-width: 100px;
+  box-sizing: border-box;
 }
 
 button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: var(--primary-blue-hover);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px var(--shadow-hover);
 }
 
 button:disabled {
-  background-color: #adb5bd;
+  background-color: var(--disabled-bg);
   cursor: not-allowed;
   opacity: 0.7;
   transform: none;
@@ -153,16 +169,16 @@ button:disabled {
 }
 
 .die.disabled {
-  background-color: #e9ecef;
+  background-color: var(--secondary-bg);
   cursor: not-allowed;
   opacity: 0.5;
-  border-color: #adb5bd;
+  border-color: var(--disabled-bg);
 }
 
 .die.blank {
   border-style: dashed;
-  background-color: #f8f9fa;
-  border-color: #dee2e6;
+  background-color: var(--card-bg);
+  border-color: var(--border-light);
 }
 
 .set-aside {
@@ -180,9 +196,9 @@ button:disabled {
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-light);
   border-radius: 6px;
-  background-color: #f8f9fa;
+  background-color: var(--card-bg);
   font-size: 14px;
 }
 
@@ -194,24 +210,24 @@ button:disabled {
 .aside-die {
   width: 25px;
   height: 25px;
-  border: 1px solid #6c757d;
+  border: 1px solid var(--text-muted);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   font-weight: bold;
-  background-color: #e9ecef;
+  background-color: var(--secondary-bg);
 }
 
 .legend {
   margin-top: 1rem;
   text-align: left;
   max-width: 100%;
-  background-color: #f8f9fa;
+  background-color: var(--card-bg);
   padding: 1rem;
   border-radius: 8px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-light);
 }
 
 .legend h3 {
@@ -228,22 +244,22 @@ button:disabled {
   position: absolute;
   top: 0;
   right: 0;
-  background: none;
+  background: transparent !important;
   border: none;
   font-size: 18px;
-  color: #6c757d;
+  color: var(--text-muted);
   cursor: pointer;
   padding: 0;
   line-height: 1;
+  outline: none;
 }
 
 .legend-header button:hover {
-  color: #495057;
+  background: none;
+  color: var(--text-primary);
 }
 
 .show-rules-btn {
-  font-size: 12px;
-  padding: 0.25rem 0.5rem;
   margin-top: 1rem;
 }
 
@@ -257,8 +273,8 @@ button:disabled {
 
 .legend-item {
   font-size: 12px;
-  color: #495057;
-  background-color: #f8f9fa;
+  color: var(--text-primary);
+  background-color: var(--card-bg);
   padding: 0.5rem;
   border-radius: 4px;
   text-align: center;
@@ -274,7 +290,7 @@ button:disabled {
 
 .rules-table {
   margin-bottom: 1.5rem;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-light);
   border-radius: 8px;
   overflow: hidden;
   background-color: white;
@@ -302,10 +318,10 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f8f9fa;
+  background-color: var(--card-bg);
   padding: 0.75rem;
-  border-bottom: 1px solid #dee2e6;
-  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
   font-size: 12px;
   font-weight: 500;
   margin: 0;
@@ -319,7 +335,7 @@ button:disabled {
 .rules-table input {
   width: 60px;
   padding: 0.25rem;
-  border: 1px solid #ced4da;
+  border: 1px solid silver;
   border-radius: 4px;
   text-align: center;
   font-size: 14px;
@@ -333,10 +349,10 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f8f9fa;
+  background-color: var(--card-bg);
   padding: 0.5rem;
   border-radius: 6px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-light);
   font-size: 12px;
   font-weight: 500;
 }
@@ -344,7 +360,7 @@ button:disabled {
 .rules-form input {
   width: 60px;
   padding: 0.25rem;
-  border: 1px solid #ced4da;
+  border: 1px solid silver;
   border-radius: 4px;
   text-align: center;
   font-size: 14px;
@@ -412,10 +428,10 @@ button:disabled {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f9fa;
+    background-color: var(--card-bg);
     padding: 0.75rem;
     border-radius: 6px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-light);
     font-size: 12px;
     font-weight: 500;
     margin-bottom: 0.5rem;
