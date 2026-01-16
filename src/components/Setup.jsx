@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Setup = ({ farkle }) => {
+const Setup = ({ farkle, theme, toggleTheme }) => {
   const allZero = Object.values(farkle.rules).every(v => v === 0)
   const goalTooLow = Object.values(farkle.rules).some(v => v > farkle.winningScore)
   const minBankTooHigh = farkle.minBankScore > farkle.winningScore
@@ -33,7 +33,12 @@ const Setup = ({ farkle }) => {
 
   return (
     <div className="app">
-      <h1>Farkle - Setup Rules</h1>
+      <div className="header">
+        <h1>Farkle - Setup Rules</h1>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === 'light' ? '🌙' : '☀️'}
+        </button>
+      </div>
 
       {/* Top table */}
       <div className="rules-table top-table">

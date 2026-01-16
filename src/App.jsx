@@ -17,14 +17,8 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <div className="header">
-        <h1>Farkle</h1>
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
-      </div>
-      {!farkle.gameStarted ? <Setup farkle={farkle} /> : <Game farkle={farkle} />}
+    <div>
+      {!farkle.gameStarted ? <Setup farkle={farkle} theme={theme} toggleTheme={toggleTheme} /> : <Game farkle={farkle} theme={theme} toggleTheme={toggleTheme} />}
     </div>
   )
 }

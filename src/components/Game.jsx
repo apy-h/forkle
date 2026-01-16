@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const Game = ({ farkle }) => {
+const Game = ({ farkle, theme, toggleTheme }) => {
   const [legendVisible, setLegendVisible] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -35,7 +35,12 @@ const Game = ({ farkle }) => {
   if (farkle.gameOver) {
     return (
       <div className="app">
-        <h1>Farkle</h1>
+        <div className="header">
+          <h1>Farkle</h1>
+          <button className="theme-toggle" onClick={toggleTheme}>
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+        </div>
         <h2>{farkle.winner} wins!</h2>
         <button onClick={farkle.resetGame}>New Game</button>
       </div>
@@ -44,7 +49,12 @@ const Game = ({ farkle }) => {
 
   return (
     <div className="app">
-      <h1>Farkle</h1>
+      <div className="header">
+        <h1>Farkle</h1>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === 'light' ? '🌙' : '☀️'}
+        </button>
+      </div>
       <div className="scores">
         {farkle.players.map((player, i) => (
           <div key={i} className={i === farkle.currentPlayer ? 'current' : ''}>
